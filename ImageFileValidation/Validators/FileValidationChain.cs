@@ -7,7 +7,7 @@ namespace ImageFileValidation.Validators
         private readonly List<IFileValidator> validators = new();
         public FileValidationChain()
         {
-            validators.Add(new FileSizeValidation(1024 * 1024));
+            validators.Add(new FileSizeValidation(1024 * 1024)); //1024 * 1024 = 1,048,576 bytes = 1MB 
             validators.Add(new FileTypeValidation(new string[] { ".jpg", ".jpeg", ".png" }));
 
         }

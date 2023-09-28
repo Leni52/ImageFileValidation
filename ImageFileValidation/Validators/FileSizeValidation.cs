@@ -12,7 +12,7 @@ namespace ImageFileValidation.Validators
         public async Task<ValidationResult> ValidateAsync(IFormFile file)
         {
             var validationResult = new ValidationResult();
-            if (file.Length > maxSize)
+            if (file.Length > maxSize || file.Length == 0)
             {
                 validationResult.Errors.Add(new ValidationFailure("File", "File exceeds the allowed file size."));
             }

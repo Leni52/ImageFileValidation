@@ -11,13 +11,12 @@ namespace ImageFileValidation.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFile([FromForm] FileUploadModel model)
         {
-            if (model == null || model.File == null ||
-                model.File.Length == 0)
+            if (model == null || model.File == null)
                 return BadRequest("Invalid file.");
 
             //validate using COR 
-            var validator = new FileValidationChain();
-            var validationResult = await validator.ValidateAsync(model.File);
+            var validationChain = new FileValidationChain();
+            var validationResult = await validationChain.ValidateAsync(model.File);
 
             if (!validationResult.IsValid)
                 return BadRequest(validationResult.Errors);
